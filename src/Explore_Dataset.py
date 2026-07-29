@@ -28,3 +28,32 @@ print(tourism_df.head())
 print(tourism_df.isnull().sum())
 
 print(tourism_df.dtypes)
+
+duplicates = tourism_df["destination_name"].duplicated().sum()
+
+print("Duplicate destination names:", duplicates)
+
+duplicates = tourism_df[
+    tourism_df["destination_name"].duplicated(keep=False)
+]
+
+print(duplicates[["destination_name", "state", "district"]].sort_values("destination_name"))
+
+print("Duplicate Rows")
+
+duplicate_rows = tourism_df[
+    tourism_df.duplicated(subset=["destination_name", "state", "district"], keep=False)
+]
+
+print(duplicate_rows)
+
+print("=" * 80)
+
+print(tourism_df.loc[13])
+print("=" * 80)
+print(tourism_df.loc[72])
+
+print("=" * 80)
+print(tourism_df.loc[7])
+print("=" * 80)
+print(tourism_df.loc[52])
